@@ -1,4 +1,4 @@
-from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle
+from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, DeathLink
 
 from dataclasses import dataclass
 
@@ -12,14 +12,6 @@ class TrapChance(Range):
     range_start = 0
     range_end = 100
     default = 20
-
-class DeathLink(Toggle):
-    """
-    Enables Death link, and death link related checks. When losing the last-chance chip, a death link is send. 
-    When someone sends a death link, your actual hand is thrown out. When 2+ hands with Split, the hand thrown out is random.
-    """
-
-    display_name = "Death link"
 
 @dataclass
 class Atoll21Options(PerGameCommonOptions):
