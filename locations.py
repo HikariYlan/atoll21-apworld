@@ -1,4 +1,10 @@
+from __future__ import annotations
+
 from BaseClasses import ItemClassification, Location
+
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from .world import Atoll21World
 
 from . import items
 
@@ -13,7 +19,7 @@ LOCATION_NAME_TO_ID = {
     "Claim approved": 105,
     # Split
     "Prepare for trouble...": 106,
-    "...and that's it": 107,
+    "...and that's it.": 107,
     "...and make it double!": 108,
     # Double down
     "The greed mentioned in the Bible": 109,
@@ -80,7 +86,7 @@ DEALER_TABLE_LOCATIONS = [
     "Never back down, never what",
     "Claim approved",
     "Prepare for trouble...",
-    "...and that's it",
+    "...and that's it.",
     "...and make it double!",
     "The greed mentioned in the Bible",
     "Jackpot!",
@@ -162,5 +168,5 @@ def create_events(world: Atoll21World) -> None:
     bluff_called = Atoll21Location(world.player, "Called the bluff", None, boss_room)
     boss_room.locations.append(bluff_called)
 
-    victory_item = items.Atoll21Item("Called the bluff", ItemProgression.progression, None, world.player)
+    victory_item = items.Atoll21Item("Called the bluff", ItemClassification.progression, None, world.player)
     bluff_called.place_locked_item(victory_item)
