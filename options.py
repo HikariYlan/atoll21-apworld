@@ -1,8 +1,10 @@
 from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle
 
+from dataclasses import dataclass
+
 class TrapChance(Range):
     """
-    Percentage chance that any given Confetti Cannon will be replaced by a Math Trap.
+    Percentage chance that any given chip is replaced by a trap.
     """
 
     display_name = "Trap Chance"
