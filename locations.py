@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from BaseClasses import ItemClassification, Location
+from BaseClasses import ItemClassification, Location, LocationProgressType
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -127,18 +127,21 @@ DEALER_TABLE_LOCATIONS = [
     # Door (turned away)
     "Tickets, please",
     "You're broke, homie",
-    # DeathLink deaths (only when DeathLink is on)
-    "First blood",
-    "Collateral damage",
-    "Stop it. Get some help",
-    "This is the part where I tell you to Alt + F4",
-    "Dude. Please.",
-    "15 mistakes. Only 1 person.",
 ]
 
 BOSS_ROOM_LOCATIONS = [
     "The final showdown",
     "Note to self: do NOT gamble your life",
+]
+
+# Only when death link is on
+DEATH_LINK_LOCATIONS = [
+    "First blood",
+    "Collateral damage",
+    "Stop it. Get some help",
+    "This is the part where I tell you to Alt + F4",
+    "Dude. Please.",
+    "15 mistakes. Only 1 person."
 ]
 
 
@@ -161,6 +164,13 @@ def create_regular_locations(world: Atoll21World) -> None:
 
     boss_room_locations = get_location_names_with_ids(BOSS_ROOM_LOCATIONS)
     boss_room.add_locations(boss_room_locations, Atoll21Location)
+
+    if world.options.death_link:
+        death_link_locations = get_location_names_with_ids(DEATH_LINK_LOCATIONS)
+        dealer_table.add_locations(death_link_locations, Atoll21Location)
+        
+        for name in DEATH_LINK_LOCATIONS:
+            world.get_location(name).progress_type = LocationProgressType.EXCLUDED
 
 def create_events(world: Atoll21World) -> None:
     boss_room = world.get_region("Casino's Boss' room")
