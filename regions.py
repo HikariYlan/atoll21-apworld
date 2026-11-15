@@ -1,4 +1,10 @@
+from __future__ import annotations
+
 from BaseClasses import Entrance, Region
+
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from .world import Atoll21World
 
 def create_and_connect_regions(world: Atoll21World) -> None:
     create_all_regions(world)
