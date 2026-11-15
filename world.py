@@ -29,7 +29,7 @@ class Atoll21World(World):
     def create_items(self) -> None:
         items.create_all_items(self)
 
-    def create_item(self, name: str) -> items.APQuestItem:
+    def create_item(self, name: str) -> items.Atoll21Item:
         return items.create_item_with_correct_classification(self, name)
     
     def get_filler_item_name(self) -> str:
