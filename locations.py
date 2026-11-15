@@ -1,5 +1,6 @@
 from BaseClasses import ItemClassification, Location
 
+from . import items
 
 LOCATION_NAME_TO_ID = {
     # 1xx: Gated by a ticket (11)
@@ -143,6 +144,7 @@ def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | No
 
 def create_all_locations(world: Atoll21World) -> None:
     create_regular_locations(world)
+    create_events(world)
 
 def create_regular_locations(world: Atoll21World) -> None:
     dealer_table = world.get_region("Dealer's table")
@@ -153,3 +155,12 @@ def create_regular_locations(world: Atoll21World) -> None:
 
     boss_room_locations = get_location_names_with_ids(BOSS_ROOM_LOCATIONS)
     boss_room.add_locations(boss_room_locations, Atoll21Location)
+
+def create_events(world: Atoll21World) -> None:
+    boss_room = world.get_region("Casino's Boss' room")
+
+    bluff_called = Atoll21Location(world.player, "Called the bluff", None, boss_room)
+    boss_room.locations.append(bluff_called)
+
+    victory_item = items.Atoll21Item("Called the bluff", ItemProgression.progression, None, world.player)
+    bluff_called.place_locked_item(victory_item)
