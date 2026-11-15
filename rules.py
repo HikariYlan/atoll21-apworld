@@ -1,5 +1,11 @@
+from __future__ import annotations
+
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, HasAll, Rule
+
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from .world import Atoll21World
 
 
 def set_all_rules(world: Atoll21World) -> None:
@@ -48,6 +54,14 @@ def set_all_locations_rules(world: Atoll21World) -> None:
     world.set_rule(the_greed_mentioned_in_the_bible, can_double)
     world.set_rule(jackpot, can_double)
     world.set_rule(pride_goes_before_a_fall, can_double)
+
+    has_all_dealer_level_up = Has("Dealer level up", count=3)
+    has_all_abilities = HasAll("Double", "Split", "Insurance", "Surrender")
+    has_bet_limit = Has("Bet limit")
+    can_enter_boss_room = has_all_dealer_level_up & has_all_abilities & has_bet_limit
+
+    youre_broke_homie = world.get_location("You're broke, homie")
+    world.set_rule(youre_broke_homie, can_enter_boss_room)
 
 def set_completion_condition(world: Atoll21World) -> None:
     world.set_completion_rule(Has("Called the bluff"))
