@@ -1,4 +1,10 @@
+from __future__ import annotations
+
 from BaseClasses import Item, ItemClassification
+
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from .world import Atoll21World
 
 ITEM_NAME_TO_ID = {
     "Double": 101,
@@ -9,10 +15,10 @@ ITEM_NAME_TO_ID = {
     "Bet limit": 106,
     "Bet limit boost": 107,
     "Small chip": 108,
-    "Big chip": 109,
+    #"Big chip": 109,
     "A nice drink on the side": 110,
-    "Calm down for a bit": 111,
-    "Fair and square": 112
+    #"Calm down for a bit": 111,
+    #"Fair and square": 112
 }
 
 DEFAULT_ITEM_CLASSIFICATIONS = {
@@ -44,29 +50,20 @@ def create_item_with_correct_classification(world: Atoll21World, name: str) -> A
     return Atoll21Item(name, classification, ITEM_NAME_TO_ID[name], world.player)
 
 def create_all_items(world: Atoll21World) -> None:
-    # This is the function in which we will create all the items that this world submits to the multiworld item pool.
-    # There must be exactly as many items as there are locations.
-    # In our case, there are either six or seven locations.
-    # We must make sure that when there are six locations, there are six items,
-    # and when there are seven locations, there are seven items.
 
-    # Creating items should generally be done via the world's create_item method.
-    # First, we create a list containing all the items that always exist.
+    ITEM_COUNTS = {
+        "Double": 1,
+        "Split": 1,
+        "Insurance": 1,
+        "Surrender": 1,
+        "Dealer level up": 3,
+        "Bet limit": 1,
+        "Bet limit boost": 2,
+    }
 
-    itempool: list[Item] = [
-        world.create_item("Double"),
-        world.create_item("Split"),
-        world.create_item("Insurance"),
-        world.create_item("Surrender"),
-        world.create_item("Dealer level up"),
-        world.create_item("Bet limit"),
-        world.create_item("Bet limit boost"),
-        world.create_item("Small chip"),
-        world.create_item("Big chip"),
-        world.create_item("A nice drink on the side"),
-        world.create_item("Calm down for a bit"),
-        world.create_item("Fair and square")
-    ]
+    itempool: list[Item] = []
+    for name, count in ITEM_COUNTS.items():
+        itempool += [world.create_item(name) for _ in range(count)]
 
     number_of_items = len(itempool)
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))
