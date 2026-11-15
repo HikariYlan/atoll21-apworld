@@ -1,6 +1,6 @@
 from BaseClasses import Entrance, Region
 
-def create_and_connect_regions(world: APQuestWorld) -> None:
+def create_and_connect_regions(world: Atoll21World) -> None:
     create_all_regions(world)
     connect_regions(world)
 
