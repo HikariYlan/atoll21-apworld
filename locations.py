@@ -38,6 +38,8 @@ LOCATION_NAME_TO_ID = {
     "I didn't sweat at all": 209,
     "Sir, you need to leave": 210,
     "It's rigged anyway": 211,
+    "Wait, what?": 212,
+    "Well, that's really awkward": 213,
 
     # 3xx: Streaks (4)
     "Happy feet": 301,
