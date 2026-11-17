@@ -14,11 +14,13 @@ ITEM_NAME_TO_ID = {
     "Dealer level up": 105,
     "Bet limit": 106,
     "Bet limit boost": 107,
-    "Small chip": 108,
-    #"Big chip": 109,
-    "A nice drink on the side": 110,
-    #"Calm down for a bit": 111,
-    #"Fair and square": 112
+    "Smaller chip": 108,
+    "Bigger chip": 109,
+    "Random chip color": 110,
+    "Random table felt color": 111,
+    "A nice drink on the side": 112,
+    "Calm down for a bit": 113,
+    "Fair and square": 114,
 }
 
 DEFAULT_ITEM_CLASSIFICATIONS = {
@@ -29,11 +31,13 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Dealer level up": ItemClassification.progression,
     "Bet limit": ItemClassification.progression,
     "Bet limit boost": ItemClassification.useful,
-    "Small chip": ItemClassification.filler,
-    # "Big chip": ItemClassification.filler, for now I will do with only one filler
+    "Smaller chip": ItemClassification.filler,
+    "Bigger chip": ItemClassification.filler,
+    "Random chip color": ItemClassification.filler,
+    "Random table felt color": ItemClassification.filler,
     "A nice drink on the side": ItemClassification.trap,
-    # "Calm down for a bit": ItemClassification.trap, for now I will do with only one trap
-    # "Fair and square": ItemClassification.trap
+    "Calm down for a bit": ItemClassification.trap,
+    "Fair and square": ItemClassification.trap
 }
 
 class Atoll21Item(Item):
@@ -41,8 +45,25 @@ class Atoll21Item(Item):
 
 def get_random_filler_item_name(world: Atoll21World) -> str:
     if world.random.randint(0, 99) < world.options.trap_chance:
-        return "A nice drink on the side"
-    return "Small chip"
+        trapChoice = world.random.randint(0, 2)
+        match trapChoice:
+            case 0:
+                return "A nice drink on the side"
+            case 1:
+                return "Calm down for a bit"
+            case 2:
+                return "Fair and square"
+    else:
+        fillerChoice = world.random.randint(0, 3)
+        match fillerChoice:
+            case 0:
+                return "Smaller chip"
+            case 1:
+                return "Bigger chip"
+            case 2:
+                return "Random chip color"
+            case 3:
+                return "Random table felt color"
 
 def create_item_with_correct_classification(world: Atoll21World, name: str) -> Atoll21Item:
     classification = DEFAULT_ITEM_CLASSIFICATIONS[name]
