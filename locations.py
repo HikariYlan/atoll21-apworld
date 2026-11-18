@@ -149,6 +149,27 @@ DEATH_LINK_LOCATIONS = [
 ]
 
 
+LOCATION_NAME_GROUPS = {
+    "Ticket checks": {
+        "Coward", "Regret",
+        "Do you have 5 minutes?", "Never back down, never what", "Claim approved",
+        "Prepare for trouble...", "...and that's it.", "...and make it double!",
+        "The greed mentioned in the Bible", "Jackpot!", "Pride goes before a fall",
+    },
+    "Free events": {
+        "That's the name of the game!", "Royal court", "Déjà vu", "Unlucky luck",
+        "Beginner's luck", "Ha! You suck!", "Wait, what?", "Well, that's awkward",
+        "Well, that's really awkward", "I don't have a greeeen!!", "I didn't sweat at all",
+        "Sir, you need to leave", "It's rigged anyway",
+    },
+    "Streaks": {"Happy feet", "Wombo Combo", "Get your a** whooped!", "Skill issue"},
+    "Bankroll milestones": {f"Bankroll milestone {number}" for number in range(1, 11)},
+    "Hands won": {"Hands won: 10", "Hands won: 25", "Hands won: 50", "99% of gamblers lose because they stop playing"},
+    "Door and boss": {"Tickets, please", "You're broke, homie", "The final showdown", "Note to self: do NOT gamble your life"},
+    "Death Link": set(DEATH_LINK_LOCATIONS),
+}
+
+
 class Atoll21Location(Location):
     game = "Atoll 21"
 

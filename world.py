@@ -17,6 +17,7 @@ class Atoll21World(World):
     options: atoll21_options.Atoll21Options
 
     location_name_to_id = locations.LOCATION_NAME_TO_ID
+    location_name_groups = locations.LOCATION_NAME_GROUPS
     item_name_to_id = items.ITEM_NAME_TO_ID
     item_name_groups = items.ITEM_NAME_GROUPS
 
