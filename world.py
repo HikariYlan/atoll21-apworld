@@ -7,7 +7,7 @@ from . import options as atoll21_options
 
 class Atoll21World(World):
     """
-    Atoll 21 takes in a casino on an atoll, where your goal is to gamble the last few bucks you have in blackjack. 
+    Atoll 21 takes place in a casino on an atoll, where your goal is to gamble the last few bucks you have in blackjack.
     Earn tickets and enough money to access the casino's boss' room, and defeat him in a final showdown.
     """
 
@@ -18,6 +18,7 @@ class Atoll21World(World):
 
     location_name_to_id = locations.LOCATION_NAME_TO_ID
     item_name_to_id = items.ITEM_NAME_TO_ID
+    item_name_groups = items.ITEM_NAME_GROUPS
 
     origin_region_name = "Dealer's table"
 

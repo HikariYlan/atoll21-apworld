@@ -40,6 +40,13 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Fair and square": ItemClassification.trap
 }
 
+ITEM_NAME_GROUPS = {
+    "Abilities": {"Double", "Split", "Insurance", "Surrender"},
+    "Tickets": {"Double", "Split", "Insurance", "Surrender", "Dealer level up", "Bet limit"},
+    "Chips": {"Smaller chip", "Bigger chip", "Random chip color", "Random table felt color"},
+    "Traps": {"A nice drink on the side", "Calm down for a bit", "Fair and square"},
+}
+
 class Atoll21Item(Item):
     game = "Atoll 21"
 
