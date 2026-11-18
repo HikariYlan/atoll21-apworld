@@ -1,6 +1,6 @@
 {
     "game": "Atoll 21",
     "minimum_ap_version": "0.6.8",
-    "world_version": "0.17.0",
+    "world_version": "0.19.0",
     "authors": ["Hikari/Ylan"]
 }
