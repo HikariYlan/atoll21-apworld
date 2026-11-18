@@ -38,4 +38,4 @@ class Atoll21World(World):
         return items.get_random_filler_item_name(self)
     
     def fill_slot_data(self) -> dict[str, Any]:
-        return self.options.as_dict("death_link")
+        return self.options.as_dict("death_link", "starting_bankroll", "boss_buy_in_multiplier", "death_link_cooldown")
